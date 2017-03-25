@@ -1,0 +1,75 @@
+body {
+  background: gray;
+}
+
+.game-board {
+  flex-direction: column;
+  display: flex;
+  height: 400px;
+  width: 400px;
+  margin: 250px auto;
+  flex-wrap: wrap;
+}
+
+#code-guess-container {
+  height: 330px;
+  width: 400px;
+  background: white;
+}
+
+#code-storage{
+  height: 70px;
+  width: 400px;
+  background: lightgray;
+}
+
+#feedback-board {
+  width: 100px;
+  height: 400px;
+  background: black;
+  color: white;
+}
+
+
+.button-container {
+  width: 60px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 10px;
+}
+
+.buttons {
+  height: 60px;
+}
+
+#red {
+  border: 3px solid white;
+  background: red;
+}
+
+#yellow {
+  border: 3px solid white;
+  background: yellow;
+}
+
+#blue {
+  border: 3px solid white;
+  background: blue;
+}
+
+#orange {
+  border: 3px solid white;
+  background: orange;
+}
+
+#green {
+  border: 3px solid white;
+  background: green;
+}
+
+#purple {
+  border: 3px solid white;
+  background: purple;
+}
