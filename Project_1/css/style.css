@@ -12,7 +12,7 @@ body {
   background: black;
   display: flex;
   justify-content: center;
-  margin: 20px auto;
+  margin: 20px auto 0 auto;
 }
 
 .instruction h1 {
@@ -26,9 +26,9 @@ body {
   align-items: center;
   /*justify-content: center;*/
   display: flex;
-  height: 410px;
+  height: 430px;
   width: 400px;
-  margin: 50px 360px 50px 200px;
+  margin: 0 365px 50px 195px;
   flex-wrap: wrap;
 }
 
@@ -43,12 +43,13 @@ body {
 }
 
 #code-storage{
-  height: 80px;
+  height: 100px;
   width: 400px;
   background: lightgray;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
 }
 
 #feedback-board {
@@ -58,10 +59,34 @@ body {
   color: white;
 }
 
+#feedback-button-container {
+  width: 100px;
+  height: 100px;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+
+}
+
+.feedback-buttons {
+  border: 3px solid lightgray;
+  height: 40px;
+  width: 40px;
+}
+
+#black {
+  background: black;
+}
+
+#gray {
+  background: gray;
+}
 
 .button-container {
   width: 60px;
-  height: 410px;
+  height: 430px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -112,7 +137,7 @@ body {
 }
 
 .feedback-square {
-  border: 1px solid lightgray;
-  height: 30px;
-  width: 30px;
+  border: 1px solid white;
+  height: 25px;
+  width: 25px;
 };
