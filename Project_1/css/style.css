@@ -1,13 +1,34 @@
 body {
+  width: 960px;
+  margin: 0 auto;
   background: gray;
+
+}
+
+.instruction {
+  position: relative;
+  width: 600px;
+  text-align: center;
+  background: black;
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.instruction h1 {
+  color:white;
+
 }
 
 .game-board {
+  position: relative;
   flex-direction: column;
+  align-items: center;
+  /*justify-content: center;*/
   display: flex;
-  height: 400px;
+  height: 410px;
   width: 400px;
-  margin: 250px auto;
+  margin: 50px 360px 50px 200px;
   flex-wrap: wrap;
 }
 
@@ -15,10 +36,14 @@ body {
   height: 330px;
   width: 400px;
   background: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
 }
 
 #code-storage{
-  height: 70px;
+  height: 80px;
   width: 400px;
   background: lightgray;
   display: flex;
@@ -28,7 +53,7 @@ body {
 
 #feedback-board {
   width: 100px;
-  height: 400px;
+  height: 330px;
   background: black;
   color: white;
 }
@@ -36,7 +61,7 @@ body {
 
 .button-container {
   width: 60px;
-  height: 400px;
+  height: 410px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -76,12 +101,16 @@ body {
   border: 3px solid white;
   height: 60px;
   width: 60px;
-  margin: 0 17px 0 17px;
+  margin: 5px 17px 5px 17px;
 }
 
-.guess-square {
-  border: 3px solid black;
+.guessed-square {
+  border: 3px solid lightgray;
   height: 60px;
   width: 60px;
-  margin: 0 17px 0 17px;
+  margin: 5px 17px 5px 17px;
 }
+
+.feedback-square {
+
+};
