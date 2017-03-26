@@ -54,7 +54,7 @@ body {
 #feedback-board {
   width: 100px;
   height: 330px;
-  background: black;
+  background: lightgray;
   color: white;
 }
 
@@ -112,5 +112,7 @@ body {
 }
 
 .feedback-square {
-
+  border: 1px solid lightgray;
+  height: 30px;
+  width: 30px;
 };
