@@ -28,6 +28,9 @@
     var $black = $('#black');
     var $gray = $('#gray');
 
+    //display code button
+    var $displayCodeBtn = $('#displayCode');
+
 
 //==============================================================================
 //-------------------------------LET'S GET STARTED------------------------------
@@ -46,7 +49,8 @@
       if(code.length < 4){
         var storeCode = function(){
           var $selectedCode = $('<div>').attr('id',$(this).attr('id'));
-          $selectedCode.addClass('sequence-square');
+          $selectedCode.addClass('sequence-square-hidden');
+          $selectedCode.css('display', 'none');
           code.push($(this).attr('id'));
           $('#code-storage').append($selectedCode);
           if (code.length == 4){
@@ -173,9 +177,26 @@
   };
 
 
+//==============================================================================
+//---------------------------so, WHO WINS?????????????--------------------------
+//==============================================================================
+
+  var displayCode = function(){
+    console.log(code);
+    $displayCodeBtn.text("Hide Code");
+    for (var i = 0; i < code.length; i++) {
+      var $selectedCode = $('<div>').attr('id', code[i]);
+      $selectedCode.addClass('sequence-square');
+      $('#code-storage').append($selectedCode);
+      $displayCodeBtn.on('click', function(){
+        $('.sequence-square').css('display', 'none');
+        $displayCodeBtn.text("Display Code");
+      });
+    };
+  };
 
 
-
+  $displayCodeBtn.on('click', displayCode);
 
 
 
