@@ -183,16 +183,18 @@
 
   var displayCode = function(){
     console.log(code);
+    $displayCodeBtn.on('click', hideCode);
     $displayCodeBtn.text("Hide Code");
     for (var i = 0; i < code.length; i++) {
       var $selectedCode = $('<div>').attr('id', code[i]);
       $selectedCode.addClass('sequence-square');
       $('#code-storage').append($selectedCode);
-      $displayCodeBtn.on('click', function(){
-        $('.sequence-square').css('display', 'none');
-        $displayCodeBtn.text("Display Code");
-      });
     };
+  };
+  var hideCode = function(){
+    $('.sequence-square').css('display', 'none');
+    $displayCodeBtn.text("Display Code");
+    $displayCodeBtn.on('click', displayCode);
   };
 
 
