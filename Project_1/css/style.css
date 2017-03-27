@@ -24,22 +24,33 @@ body {
   position: relative;
   flex-direction: column;
   align-items: center;
-  /*justify-content: center;*/
   display: flex;
-  height: 430px;
+  height: 502px;
   width: 400px;
-  margin: 0 365px 50px 195px;
+  margin: 0 380px 50px 180px;
   flex-wrap: wrap;
 }
 
 #code-guess-container {
-  height: 330px;
+  height: 402px;
   width: 400px;
   background: white;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
+
+}
+
+.guess-rows {
+  width: 400px;
+  height: 100px;
+  border-top: .5px solid gray;
+  background: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
 }
 
 #code-storage{
@@ -53,10 +64,26 @@ body {
 }
 
 #feedback-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
   width: 100px;
-  height: 330px;
+  height: 402px;
   background: lightgray;
   color: white;
+}
+
+.feedback-rows {
+  width: 100px;
+  height: 100px;
+  border-top: .5px solid gray;
+  background: lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+
 }
 
 #feedback-button-container {
@@ -76,21 +103,14 @@ body {
   width: 40px;
 }
 
-#black {
-  background: black;
-}
-
-#gray {
-  background: gray;
-}
-
 .button-container {
   width: 60px;
-  height: 430px;
+  height: 502px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-right: 10px;
+  padding: 15px;
+  border: 3px solid black;
 }
 
 .buttons {
@@ -140,4 +160,15 @@ body {
   border: 1px solid white;
   height: 25px;
   width: 25px;
-};
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+#black {
+  background: black;
+}
+
+#gray {
+  background: gray;
+}

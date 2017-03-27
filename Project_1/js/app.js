@@ -1,16 +1,21 @@
   $(function(){
 
-  //==============================================================================
-  //---------------------------ARRAYS FOR CODE & GUESSES--------------------------
-  //==============================================================================
+//==============================================================================
+//----------------------ARRAYS FOR FEEDBACK CODE & GUESSES----------------------
+//==============================================================================
     //array to hold the codemaker's selection
     var code = [];
     var guess = [];
+    // var guess1 = [];
+    // var guess2 = [];
+    // var guess3 = [];
+    // var guess4 = [];
+    var feedback = [];
 
 
-  //==============================================================================
-  //--------------------------------BUTTONS GRABBED-------------------------------
-  //==============================================================================
+//==============================================================================
+//--------------------------------BUTTONS GRABBED-------------------------------
+//==============================================================================
     //these are my buttons to choose sequences
     var $redBtn = $('#red');
     var $yellowBtn = $('#yellow');
@@ -72,15 +77,35 @@
 //---------------------------CODEBREAKER MAKES GUESS----------------------------
 //==============================================================================
   //when button is clicked, store in guess code-guess-container array and append
-    var codeBreakerGuess = function(){
+  var codeBreakerGuess = function(){
+
+      guess = [];
       console.log("still doing swell:)");
       if(guess.length < 4){
+        console.log('something');
         var storeGuess = function(){
+          console.log('storeGuess');
           var $selectedGuess = $('<div>').attr('id',$(this).attr('id'));
           $selectedGuess.addClass('guessed-square');
           guess.push($(this).attr('id'));
-          $('#code-guess-container').append($selectedGuess);
-          console.log(guess);
+
+
+          if($('#first-round-guess > div').length < 4){
+            $('#first-round-guess').append($selectedGuess);
+          } else if($('#first-round-guess > div').length == 4 && $('#second-round-guess > div').length < 4){
+            $('#second-round-guess').append($selectedGuess);
+          } else if($('#first-round-guess > div').length == 4 && $('#second-round-guess > div').length == 4 && $('#third-round-guess > div').length < 4){
+            $('#third-round-guess').append($selectedGuess);
+          } else if($('#first-round-guess > div').length == 4 && $('#second-round-guess > div').length == 4 && $('#third-round-guess > div').length == 4 && $('#fourth-round-guess > div').length < 4 ){
+            $('#fourth-round-guess').append($selectedGuess);
+          // } else if($('#first-round-guess > div').length == 4 && $('#second-round-guess > div').length == 4 &&
+          // $('#third-round-guess > div').length == 4 &&
+          // $('#fourth-round-guess > div').length == 4) {
+          //
+          // }
+            };
+
+
           if (guess.length == 4){
             $('h1').text("Feedback time.");
 
@@ -90,6 +115,8 @@
             $orangeBtn.off('click', storeGuess);
             $greenBtn.off('click', storeGuess);
             $purpleBtn.off('click', storeGuess);
+
+            feedbackTime();
           };
         };
         $redBtn.on('click', storeGuess);
@@ -98,23 +125,53 @@
         $orangeBtn.on('click', storeGuess);
         $greenBtn.on('click', storeGuess);
         $purpleBtn.on('click', storeGuess);
-        console.log(code);
-        console.log(guess);
+        // console.log(code);
+        // console.log(guess);
       };
-    };
+
+  };
 
 
 //==============================================================================
 //---------------------------CODE MAKER GIVES FEEDBACK--------------------------
 //==============================================================================
 
+  var feedbackTime = function(){
+    feedback = [];
+    var giveFeedback = function (){
+      feedback.push($(this).attr('id'));
+      var $feedback = $('<div>').attr('id', $(this).attr('id')).addClass('feedback-square');
+      $('#first-round-feedback').append($feedback);
 
-  var giveFeedback = function (){
-    console.log("I work.");
+      if($('#first-round-feedback > div').length < 5){
+        $('#first-round-feedback').append($feedback);
+      } else if($('#first-round-feedback > div').length == 5 && $('#second-round-feedback > div').length < 4){
+        $('#second-round-feedback').append($feedback);
+      } else if($('#first-round-feedback > div').length == 5 && $('#second-round-feedback > div').length == 4 &&
+      $('#third-round-feedback > div').length < 4){
+        $('#third-round-feedback').append($feedback);
+      } else if($('#first-round-feedback > div').length == 5 && $('#second-round-feedback > div').length == 4 &&
+      $('#third-round-feedback > div').length == 4 &&
+      $('#fourth-round-feedback > div').length < 4 ){
+        $('#fourth-round-feedback').append($feedback);
+      };
+
+      if (feedback.length == 4){
+        $('h1').text("Code Breaker: make your guess.");
+
+        $black.off('click', giveFeedback);
+        $gray.off('click', giveFeedback);
+
+        codeBreakerGuess();
+
+      };
+    };
+
+    console.log(feedback);
+    $black.on('click', giveFeedback);
+    $gray.on('click', giveFeedback);
   };
 
-  $black.on('click', giveFeedback);
-  $gray.on('click', giveFeedback);
 
 
 
@@ -122,9 +179,8 @@
 
 
 
-
-    start();
-
+start();
 
 
-  });
+
+});
