@@ -1,8 +1,27 @@
 body {
+  /*font-family: Times New Roman;*/
   width: 960px;
   margin: 0 auto;
   background: gray;
 
+}
+
+#versus-computer-btn {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: inherit;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 3px;
+}
+
+#two-player-btn{
+  font-size: 20px;
+  font-weight: bold;
+  font-family: inherit;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 3px;
 }
 
 .instruction {
@@ -95,15 +114,25 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  flex-direction: row;
+  flex-flow: row wrap;
   border-right: 3px solid black;
 
 }
 
 .feedback-buttons {
+  visibility: hidden;
   border: 3px solid lightgray;
   height: 40px;
   width: 40px;
+}
+
+#feedback-done-button {
+  visibility: hidden;
+  font-family: inherit;
+  font-weight: bold;
+  border: 3px solid lightgray;
+  height: 40px;
+  width: 90px;
 }
 
 .button-container {
