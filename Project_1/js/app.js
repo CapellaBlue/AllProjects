@@ -124,12 +124,18 @@ $(function(){
     $('.controls').append($startNextRoundBtn);
     $startNextRoundBtn.on('click', reset);
     if(playerOne.role == 'code maker'){
-      playerOne.score = playerOne.score + codeMakerScore;
-      playerTwo.score = playerTwo.score + codeBreakerScore;
+      playerOne.points = playerOne.points + codeMakerScore;
+      playerTwo.points = playerTwo.points + codeBreakerScore;
+      console.log(playerOne.points);
+      console.log(playerTwo.points);
     } else if(playerOne.role == "code breaker"){
-      playerOne.score = playerOne.score + codeBreakerScore;
-      playerTwo.score = playerTwo.score + codeBreakerScore;
+      playerOne.points = playerOne.points + codeBreakerScore;
+      playerTwo.points = playerTwo.points + codeBreakerScore;
+      console.log(playerOne.points);
+      console.log(playerTwo.points);
     };
+    $playerOneScoreBoard.text(playerOne.name + ": " + playerOne.points);
+    $playerTwoScoreBoard.text(playerTwo.name + ": " + playerTwo.points);
   };
   var reset = function(){
 
