@@ -3,7 +3,41 @@ body {
   width: 960px;
   margin: 0 auto;
   background: gray;
+}
 
+#score-container{
+  position: relative;
+  width: 600px;
+  height: 40px;
+  text-align: center;
+  background: lightgray;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px auto 0 auto;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#begin-two-player {
+  font-size: 20px;
+  width: 100px;
+  font-weight: bold;
+  font-family: inherit;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 3px;
+}
+
+#start-button {
+  font-size: 20px;
+  width: 100px;
+  font-weight: bold;
+  font-family: inherit;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 3px;
 }
 
 #versus-computer-btn {
@@ -24,20 +58,26 @@ body {
   border-radius: 3px;
 }
 
+.nameInput {
+  margin: 5px;
+  width: 200px
+}
+
 .instruction {
   position: relative;
   width: 600px;
+  height: 85px;
   text-align: center;
   background: black;
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 20px auto 0 auto;
+  color: white;
+  font-weight: bold;
+  font-size: 35px;
 }
 
-.instruction h1 {
-  color:white;
-
-}
 
 .game-board {
   position: relative;
@@ -126,7 +166,7 @@ body {
   width: 40px;
 }
 
-#feedback-done-button {
+#feedback-empty-button {
   visibility: hidden;
   font-family: inherit;
   font-weight: bold;
@@ -176,19 +216,13 @@ body {
 }
 
 .sequence-square {
+  visibility: hidden;
   border: 3px solid white;
   height: 60px;
   width: 60px;
   margin: 5px 17px 5px 17px;
 }
 
-.sequence-square-hidden {
-  display:none;
-  border: 3px solid white;
-  height: 60px;
-  width: 60px;
-  margin: 5px 17px 5px 17px;
-}
 
 .guessed-square {
   border: 3px solid lightgray;
@@ -225,6 +259,15 @@ body {
 }
 
 #displayCode {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: inherit;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 3px;
+}
+
+#next-round-start {
   font-size: 20px;
   font-weight: bold;
   font-family: inherit;
