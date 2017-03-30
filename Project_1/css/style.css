@@ -2,12 +2,14 @@
 body {
   /*font-family: Times New Roman;*/
   width: 100%;
+
   margin: 0 auto;
   background: gray;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-direction: row;
+
 }
 
 .first-div,.middle-div,.last-div{
@@ -17,11 +19,15 @@ body {
 .first-div{
   width: 25%;
   margin: 5px 5px 10px 10px;
+  height: 850px;
+  overflow: scroll;
 }
 
 .last-div {
   width: 25%;
-  margin: 5px 10px 10px 5px
+  margin: 5px 10px 10px 5px;
+  height: 850px;
+  overflow: scroll;
 }
 
 .middle-div{
@@ -31,12 +37,14 @@ body {
   width: 50%;
   margin:  20px 5px;
   min-width: 650px;
+
 }
 
 .game-text {
-  font-size: 16.5px;
+  font-size: 18px;
   color: lightgray;
   text-align: justify;
+  opacity: .8
 }
 
 #score-container{
@@ -137,7 +145,7 @@ body {
   justify-content: center;
   align-items: center;
   display: flex;
-  height: 502px;
+  height: 602px;
   width: 100%;
   /*margin: 0 380px 0 180px;*/
   flex-wrap: wrap;
@@ -145,7 +153,7 @@ body {
 }
 
 #code-guess-container {
-  height: 402px;
+  height: 502px;
   width: 60%;
   background: white;
   display: flex;
@@ -166,6 +174,13 @@ body {
   flex-direction: row;
 }
 
+.guessed-square {
+  border: 3px solid lightgray;
+  height: 60px;
+  min-width: 60px;
+  margin: 5px 17px 5px 17px;
+}
+
 #code-storage{
   height: 100px;
   width: 60%;
@@ -182,7 +197,7 @@ body {
   justify-content: flex-end;
   align-items: flex-end;
   width: 20%;
-  height: 402px;
+  height: 502px;
   background: lightgray;
   color: white;
   border-right: 3px solid black;
@@ -216,7 +231,8 @@ body {
   visibility: hidden;
   border: 3px solid lightgray;
   height: 40px;
-  width: 40px;
+  min-width: 40px;
+  width: 25%;
 }
 
 #feedback-empty-button {
@@ -228,9 +244,33 @@ body {
   width: 90px;
 }
 
+.feedback-square {
+  border: 1px solid white;
+  height: 25px;
+  min-width: 25px;
+  width: 25%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#black {
+  background: black;
+}
+
+#gray {
+  background: gray;
+}
+
+#none {
+  background: lightgray;
+  border: none;
+}
+
 .button-container {
   width: 14%;
-  height: 502px;
+  height: 602px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -243,6 +283,7 @@ body {
 .buttons {
   border: 3px solid white;
   height: 60px;
+  min-width: 60px;
   width: 75%;
   box-shadow: 3px 3px 10px black;
 }
@@ -280,30 +321,9 @@ body {
 }
 
 
-.guessed-square {
-  border: 3px solid lightgray;
-  height: 60px;
-  width: 20%;
-  margin: 5px 17px 5px 17px;
-}
 
-.feedback-square {
-  border: 1px solid white;
-  height: 25px;
-  width: 25%;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
 
-#black {
-  background: black;
-}
 
-#gray {
-  background: gray;
-}
 
 .controls {
   position: relative;

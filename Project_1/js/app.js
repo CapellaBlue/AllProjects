@@ -314,10 +314,9 @@ $(function(){
   //---------------------------CODE MAKER GIVES FEEDBACK--------------------------
   //==============================================================================
 
+
   var feedbackTime = function(){
-
     feedback = [];
-
     if(code[0] == guess[0] && code[1] == guess[1] && code[2] == guess[2] && code[3] == guess[3]){
       $('.instruction').text("Code Breaker wins round!");
       codeBreakerScore += 1;
@@ -325,57 +324,108 @@ $(function(){
     } else {
       codeMakerScore += 1;
     };
-
   };
+
+
 
 
   var giveFeedback = function (){
 
     feedback.push($(this).attr('id'));
-
     var $feedback = $('<div>').attr('id',$(this).attr('id')).addClass('feedback-square');
-
-    var $noFeedback
-    $('<div>').addClass('feedback-square');
 
     if($('#first-round-feedback > div').length == 4 && $('#second-round-feedback > div').length == 4 &&
     $('#third-round-feedback > div').length == 4 &&
     $('#fourth-round-feedback > div').length < 4 ){
       $('#fourth-round-feedback').append($feedback);
-      $('#fourth-round-feedback').append($noFeedback);
+      // $('#fourth-round-feedback').append($noFeedback);
 
     } else if($('#first-round-feedback > div').length == 4 && $('#second-round-feedback > div').length == 4 &&
     $('#third-round-feedback > div').length < 4){
       $('#third-round-feedback').append($feedback);
-      $('#third-round-feedback').append($noFeedback);
+      // $('#third-round-feedback').append($noFeedback);
 
     } else if($('#first-round-feedback > div').length == 4 && $('#second-round-feedback > div').length < 4){
       $('#second-round-feedback').append($feedback);
-      $('#second-round-feedback').append($noFeedback);
+      // $('#second-round-feedback').append($noFeedback);
 
     } else if($('#first-round-feedback > div').length < 4){
       $('#first-round-feedback').append($feedback);
-      $('#first-round-feedback').append($noFeedback);
+      // $('#first-round-feedback').append($noFeedback);
     };
 
-    if (feedback.length == 4 && $('#fourth-round-feedback > div').length < 4){
-      $('.instruction').text("Code Breaker: make your guess.");
-      codeBreakerGuess();
-    };
 
-    if($('#fourth-round-feedback > div').length == 4){
-      codeMakerScore += 1;
-      if(roundCount == roundLimit){
-        declareWinner();
-      } else if(roundCount < roundLimit){
-        $('.instruction').text("Code Maker wins round!");
-        checkRound();
+    var fillInFeedbackDiv = function(){
+      console.log("no feedback clicked");
+
+      if($('#first-round-guess > div').length == 4 && $('#second-round-guess > div').length == 4 && $('#third-round-guess > div').length == 4 && $('#fourth-round-guess > div').length == 4 ){
+        for (var i = 1; i < 5; i++){
+          console.log("in  i loop");
+          if($('#fourth-round-feedback > div').length == i){
+            for (var j = 1; j <= 4-i; j++) {
+              var $noFeedback =
+              $('<div>').addClass('feedback-square').attr('id','none');
+              $('#fourth-round-feedback').append($noFeedback);
+            };
+          };
+        };
+      } else if($('#first-round-guess > div').length == 4 && $('#second-round-guess > div').length == 4 && $('#third-round-guess > div').length == 4) {
+        for (var i = 1; i < 5; i++){
+          console.log("in  i loop");
+          if($('#third-round-feedback > div').length == i){
+            for (var j = 1; j <= 4-i; j++) {
+              var $noFeedback =
+              $('<div>').addClass('feedback-square').attr('id','none');
+              $('#third-round-feedback').append($noFeedback);
+            };
+          };
+        };
+      } else if($('#first-round-guess > div').length == 4 && $('#second-round-guess > div').length == 4){
+        for (var i = 1; i < 5; i++){
+          console.log("in i loop");
+          if($('#second-round-feedback > div').length == i){
+            for (var j = 1; j <= 4-i; j++) {
+              var $noFeedback =
+              $('<div>').addClass('feedback-square').attr('id','none');
+              $('#second-round-feedback').append($noFeedback);
+            };
+          };
+        };
+      } else if($('#first-round-guess > div').length == 4){
+        for (var i = 0; i < 4; i++){
+
+          console.log("in i loop");
+          if($('#first-round-feedback > div').length == i){
+            for (var j = 1; j <= (4-i); j++) {
+              var $noFeedback =
+              $('<div>').addClass('feedback-square');
+              console.log(4-i);
+              $('#first-round-feedback').append($noFeedback);
+            };
+          };
+        };
+      };
+
+      if (feedback.length == 4 && $('#fourth-round-feedback > div').length < 4){
+        $('.instruction').text("Code Breaker: make your guess.");
+        codeBreakerGuess();
+      };
+
+      if($('#fourth-round-feedback > div').length == 4){
+        codeMakerScore += 1;
+        if(roundCount == roundLimit){
+          declareWinner();
+        } else if(roundCount < roundLimit){
+          $('.instruction').text("Code Maker wins round!");
+          checkRound();
+        };
       };
     };
+
+    $feedbackEmptyBtn.on('click', fillInFeedbackDiv);
   };
   $black.on('click', giveFeedback);
   $gray.on('click', giveFeedback);
-  $feedbackEmptyBtn.on('click', giveFeedback);
 
 
   //==============================================================================
@@ -403,29 +453,3 @@ $(function(){
 
 
 });
-
-
-
-
-// if($('#fourth-round-guess > div').length == 4 && $('#first-round-feedback > div').length > 0 && $('#second-round-feedback > div').length > 0 && $('#third-round-feedback > div').length > 0){
-//   $('#fourth-round-feedback').append($feedback);
-// } else if($('#third-round-guess > div').length == 4 && $('#first-round-feedback > div').length > 0 && $('#second-round-feedback > div').length > 0){
-//   $('#third-round-feedback').append($feedback);
-//
-// } else if($('#first-round-feedback > div').length > 0  && $('#second-round-guess > div').length == 4){
-//   $('#second-round-feedback').append($feedback);
-// } else {
-//   $('#first-round-feedback').append($feedback);
-// };
-// console.log(guess);
-//
-// var endFeedback = function(){
-//
-//   $black.off('click', giveFeedback);
-//   $gray.off('click', giveFeedback);
-//   // givePointToCodeMaker();
-//   $('.instruction').text("Code Breaker: make your guess.");
-//   console.log(code);
-//   console.log(guess);
-//   codeBreakerGuess();
-// };
