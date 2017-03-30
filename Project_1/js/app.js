@@ -317,7 +317,7 @@ $(function(){
   //---------------------------CODE MAKER GIVES FEEDBACK--------------------------
   //==============================================================================
 
-
+  //if the sequence matches, time to restart round:)
   var feedbackTime = function(){
     feedback = [];
     if(code[0] == guess[0] && code[1] == guess[1] && code[2] == guess[2] && code[3] == guess[3]){
@@ -331,7 +331,7 @@ $(function(){
 
 
 
-
+  //a handler function to append the feedback divs to the respective feedback row
   var giveFeedback = function (){
 
     feedback.push($(this).attr('id'));
@@ -425,7 +425,7 @@ $(function(){
         if($('#first-round-feedback > div').length == i){
           for (var j = 1; j <= (4-i); j++) {
             var $noFeedback =
-            $('<div>').addClass('feedback-square');
+            $('<div>').addClass('feedback-square').attr('id','none');
             console.log(4-i);
             $('#first-round-feedback').append($noFeedback);
             feedback.push($(this).attr('id'));
@@ -435,7 +435,7 @@ $(function(){
       endFeedback();
     };
   };
-  
+
   var endFeedback = function(){
     console.log("inside endFeedback");
     if (feedback.length == 4 && $('#fifth-round-feedback > div').length < 4){
