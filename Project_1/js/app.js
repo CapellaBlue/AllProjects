@@ -366,6 +366,7 @@ $(function(){
         declareWinner();
       } else if(roundCount < roundLimit){
         $('.instruction').text("Code Maker wins round!");
+        checkRound();
       };
     };
   };
