@@ -20,7 +20,7 @@ body {
   font-size: 20px;
 }
 
-#begin-two-player {
+#start-button {
   font-size: 20px;
   width: 100px;
   font-weight: bold;
@@ -30,9 +30,17 @@ body {
   border-radius: 3px;
 }
 
-#start-button {
+#two-rounds-button {
   font-size: 20px;
-  width: 100px;
+  font-weight: bold;
+  font-family: inherit;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 3px;
+}
+
+#four-rounds-button{
+  font-size: 20px;
   font-weight: bold;
   font-family: inherit;
   padding: 10px;
@@ -51,6 +59,16 @@ body {
 
 #two-player-btn{
   font-size: 20px;
+  font-weight: bold;
+  font-family: inherit;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 3px;
+}
+
+#begin-two-player {
+  font-size: 20px;
+  width: 100px;
   font-weight: bold;
   font-family: inherit;
   padding: 10px;
@@ -189,6 +207,7 @@ body {
 .buttons {
   border: 3px solid white;
   height: 60px;
+  box-shadow: 3px 3px 10px black;
 }
 
 #red {

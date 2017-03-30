@@ -15,13 +15,16 @@ $(function(){
   //---------------------------Keeping Score Elements-----------------------------
   //-----------------------------Players and Points-------------------------------
   //==============================================================================
+  var roundLimit = 0;
+
+  var roundCount = 1;
 
   var playerOne = { name: "",
-  role: 'code maker',
+  role: 'Code Maker',
   points: 0         };
 
   var playerTwo = { name: "",
-  role: 'code breaker',
+  role: 'Code Breaker',
   points: 0         };
   // console.log($inputOne.val());
   var $inputOne = $('<input>').attr('type', 'text').attr('id', 'input-one').addClass('nameInput').attr('placeholder', "Enter Code Maker's Name");
@@ -35,8 +38,7 @@ $(function(){
 
   //div to hold the scores
   var $scoreDiv = $('#score-container');
-  // $playerOneScoreBoard = $('<p>').text(playerOne.name + ": " + playerOne.points);
-  // $playerTwoScoreBoard = $('<p>').text(playerTwo.name + ": " + playerTwo.points);
+
 
 
 
@@ -68,37 +70,51 @@ $(function(){
   //reset button
   var $startNextRoundBtn = $('<button>').attr('id', 'next-round-start').text('Start Next Round');
 
+  //button pressed when two player's names are entered.
   var $beginTwoPlayerBtn = $('<button>').attr('id','begin-two-player');
 
+  //the user choses between 2 or 4 rounds.
+  var $twoRoundsBtn = $('<button>').attr('id','two-rounds-button').text("Two Rounds");
+  var $fourRoundsBtn =$('<button>').attr('id','four-rounds-button').text("Four Rounds");
 
   //==============================================================================
   //-------------------------------LET'S GET STARTED------------------------------
   //==============================================================================
+  var $masterMind = $('<h1>').text("MASTER MIND").css('text-align','justify').css('padding', 'zero');
+  $scoreDiv.append($masterMind);
 
-  var start = function(){
-    showPlayerMode();
+  var pickRounds = function(){
+    $startBtn.css('display','none');
+    $('.instruction').append($twoRoundsBtn);
+    $('.instruction').append($fourRoundsBtn);
+    $twoRoundsBtn.on('click', twoRounds);
+    $fourRoundsBtn.on('click', fourRounds);
+  };
+
+  //this function shows the two player mode options.
+  var showPlayerMode = function(){
+    $twoRoundsBtn.css('display', 'none');
+    $fourRoundsBtn.css('display', 'none');
+    $('.instruction').append($twoPlayerBtn).append($versusComputerBtn);
     $twoPlayerBtn.on('click', twoPlayerMode);
     // $versusComputerBtn.on('click', versusComputerMode);
   };
 
-  var showPlayerMode = function(){
-    $startBtn.css('display', 'none');
-    $('.instruction').append($twoPlayerBtn).append($versusComputerBtn);
-  };
 
 
+  $startBtn.on('click', pickRounds);
   //==============================================================================
   //----------------------------Two Player Mode Set UP----------------------------
   //==============================================================================
   var submitNames = function(){
+    $masterMind.remove();
     playerOne.name = $inputOne.val();
     playerTwo.name = $inputTwo.val();
 
-    $playerOneScoreBoard = $('<p>').text(playerOne.name + ": " + playerOne.points);
-    $playerTwoScoreBoard = $('<p>').text(playerTwo.name + ": " + playerTwo.points);
+    $playerOneScoreBoard = $('<p>').text(playerOne.role + ": " + playerOne.name + ": " + playerOne.points);
+    $playerTwoScoreBoard = $('<p>').text(playerTwo.role + ": " + playerTwo.name + ": "+ playerTwo.points);
     $scoreDiv.append($playerOneScoreBoard);
     $scoreDiv.append($playerTwoScoreBoard);
-    console.log(playerTwo.name);
   };
 
   var twoPlayerMode = function(){
@@ -117,35 +133,64 @@ $(function(){
   };
 
   //==============================================================================
-  //-------------------------------Reset for Rounds-------------------------------
+  //-------------------------------Reset & Rounds-------------------------------
   //==============================================================================
+
+  var twoRounds = function(){
+    roundLimit = 4;
+    showPlayerMode();
+  };
+
+  var fourRounds = function(){
+    roundLimit = 8;
+    showPlayerMode();
+  };
+
+  var checkRound = function(){
+    console.log("checkRound here");
+    if(roundCount == roundLimit){
+      declareWinner();
+    } else {
+      startNextRound();
+    };
+  };
+
   var startNextRound = function(){
-    // console.log("inside startNextRound");
+    console.log("inside startNextRound");
     $('.controls').append($startNextRoundBtn);
-    $startNextRoundBtn.on('click', reset);
-    if(playerOne.role == 'code maker'){
+    if(playerOne.role == 'Code Maker'){
       playerOne.points = playerOne.points + codeMakerScore;
       playerTwo.points = playerTwo.points + codeBreakerScore;
-      console.log(playerOne.points);
-      console.log(playerTwo.points);
-    } else if(playerOne.role == "code breaker"){
+    } else if(playerOne.role == 'Code Breaker'){
       playerOne.points = playerOne.points + codeBreakerScore;
-      playerTwo.points = playerTwo.points + codeBreakerScore;
-      console.log(playerOne.points);
-      console.log(playerTwo.points);
+      playerTwo.points = playerTwo.points + codeMakerScore;
     };
-    $playerOneScoreBoard.text(playerOne.name + ": " + playerOne.points);
-    $playerTwoScoreBoard.text(playerTwo.name + ": " + playerTwo.points);
-  };
-  var reset = function(){
 
+    $playerOneScoreBoard.text(playerOne.role + ": " + playerOne.name + ": " + playerOne.points);
+    $playerTwoScoreBoard.text(playerTwo.role + ": " + playerTwo.name + ": "+ playerTwo.points);
+    $startNextRoundBtn.on('click', reset);
+  };
+
+  var reset = function(){
+    console.log(playerOne.role);
+    if(playerOne.role == "Code Maker"){
+      playerOne.role = "Code Breaker";
+      playerTwo.role = "Code Maker";
+    } else if(playerOne.role == "Code Breaker"){
+      playerOne.role = "Code Maker";
+      playerTwo.role = "Code Breaker";
+    };
+    $playerOneScoreBoard.text(playerOne.role + ": " + playerOne.name + ": " + playerOne.points);
+    $playerTwoScoreBoard.text(playerTwo.role + ": " + playerTwo.name + ": "+ playerTwo.points);
+    roundCount += 1;
+    console.log("roundCount is " + roundCount);
     code = [];
     guess = [];
-    feedback = []
+    feedback = [];
     codeMakerScore = 0;
     codeBreakerScore = 0;
     $('#next-round-start').remove();
-    $('.instruction').text("").css('font-size', '35px');
+    $('.instruction').text("");
     $('.guess-rows').empty();
     $('#code-storage').empty();
     $('.feedback-rows').empty();
@@ -154,11 +199,25 @@ $(function(){
 
 
 
-  $startBtn.on('click', start);
+
   console.log("You're doing fine");
   //==============================================================================
   //----------------------------CODEMAKER SELECTS CODE ---------------------------
   //==============================================================================
+
+  var displayCode = function(){
+    $displayCodeBtn.on('click', hideCode);
+    $displayCodeBtn.text("Hide Code");
+    $('.sequence-square').css('visibility', 'visible');
+  };
+
+  var hideCode = function(){
+    $('.sequence-square').css('visibility', 'hidden');
+    $displayCodeBtn.text("Display Code");
+    $displayCodeBtn.on('click', displayCode);
+  };
+
+  $displayCodeBtn.on('click', displayCode);
   //when button is clicked....store in code-storage array and append
   var codeMakerFirstTurn = function(){
     $('.nameInput').css('display', 'none');
@@ -168,11 +227,7 @@ $(function(){
         code.push($(this).attr('id'));
         var $selectedCode = $('<div>').attr('id',$(this).attr('id'));
         $selectedCode.addClass('sequence-square');
-        // for (var i = 0; i < code.length; i++) {
-        //   var $selectedCode = $('<div>').attr('id', code[i]);
-        //   $selectedCode.addClass('sequence-square');
-        //   $('#code-storage').append($selectedCode);
-        // };
+
         $('#code-storage').append($selectedCode);
         if (code.length == 4){
           $('.instruction').text("Code Breaker: make your guess.");
@@ -189,12 +244,6 @@ $(function(){
       };
       var $instruction = $('<div>').text("Code Maker: Select your code.");
       $('.instruction').prepend($instruction);
-      // $redBtn.on('click', storeCode);
-      // $yellowBtn.on('click', storeCode);
-      // $blueBtn.on('click', storeCode);
-      // $orangeBtn.on('click', storeCode);
-      // $greenBtn.on('click', storeCode);
-      // $purpleBtn.on('click', storeCode);
     };
     $redBtn.on('click', storeCode);
     $yellowBtn.on('click', storeCode);
@@ -211,7 +260,7 @@ $(function(){
   var codeBreakerGuess = function(){
 
     guess = [];
-    console.log("still doing swell:)");
+    console.log("inside codeBreakerGuess");
     if(guess.length <= 4){
       var storeGuess = function(){
         var $selectedGuess = $('<div>').attr('id',$(this).attr('id'));
@@ -252,8 +301,7 @@ $(function(){
       $orangeBtn.on('click', storeGuess);
       $greenBtn.on('click', storeGuess);
       $purpleBtn.on('click', storeGuess);
-      // console.log(code);
-      // console.log(guess);
+
     };
 
   };
@@ -264,28 +312,22 @@ $(function(){
   //==============================================================================
 
   var feedbackTime = function(){
-    console.log(guess);
-    console.log(code);
+
     feedback = [];
 
-    // code.length == 4 && guess.length == 4 &&
     if(code[0] == guess[0] && code[1] == guess[1] && code[2] == guess[2] && code[3] == guess[3]){
       $('.instruction').text("Code Breaker wins round!");
       codeBreakerScore += 1;
-      codeBreakerWinner = true;
-      startNextRound();
-
+      checkRound()
     } else {
       codeMakerScore += 1;
     };
-    console.log(codeMakerScore);
-    console.log(codeBreakerScore);
 
   };
 
 
   var giveFeedback = function (){
-    console.log(feedback);
+
     feedback.push($(this).attr('id'));
 
     var $feedback = $('<div>').attr('id',$(this).attr('id')).addClass('feedback-square');
@@ -319,10 +361,12 @@ $(function(){
     };
 
     if($('#fourth-round-feedback > div').length == 4){
-      codeMakerScore += 2;
-      $('.instruction').text("Code Maker wins round!");
-      console.log(codeMakerScore);
-      startNextRound();
+      codeMakerScore += 1;
+      if(roundCount == roundLimit){
+        declareWinner();
+      } else if(roundCount < roundLimit){
+        $('.instruction').text("Code Maker wins round!");
+      };
     };
   };
   $black.on('click', giveFeedback);
@@ -333,28 +377,20 @@ $(function(){
   //==============================================================================
   //---------------------------so, WHO WINS?????????????--------------------------
   //==============================================================================
-  var codeBreakerWinner = false;
 
-
-
-  // if(codeBreakerWinner){
-  //   startNextRound();
-  // };
-
-
-  var displayCode = function(){
-    $displayCodeBtn.on('click', hideCode);
-    $displayCodeBtn.text("Hide Code");
-    $('.sequence-square').css('visibility', 'visible');
+  var declareWinner = function(){
+    console.log("inside declareWinner");
+    $('instruction').text("");
+    $scoreDiv.text("");
+    $scoreDiv.append($masterMind);
+    if(playerOne.points > playerTwo.points){
+      $('.instruction').text(playerOne.name + "wins with" + playerOne.points + "points!");
+    } else if(playerTwo.points > playerOne.points){
+      $('.instruction').text(playerOne.name + "wins with" + playerOne.points + "points!");
+    };
   };
 
-  var hideCode = function(){
-    $('.sequence-square').css('visibility', 'hidden');
-    $displayCodeBtn.text("Display Code");
-    $displayCodeBtn.on('click', displayCode);
-  };
 
-  $displayCodeBtn.on('click', displayCode);
 });
 
 
