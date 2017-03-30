@@ -271,7 +271,10 @@ $(function(){
         guess.push($(this).attr('id'));
         // console.log(guess);
 
-        if($('#first-round-guess > div').length == 4 && $('#second-round-guess > div').length == 4 && $('#third-round-guess > div').length == 4 && $('#fourth-round-guess > div').length < 4 ){
+        if($('#first-round-guess > div').length == 4 && $('#second-round-guess > div').length == 4 && $('#third-round-guess > div').length == 4 && $('#fourth-round-guess > div').length == 4 && $('#fifth-round-guess > div').length < 4 ){
+          $('#fifth-round-guess').append($selectedGuess);
+
+        } else if($('#first-round-guess > div').length == 4 && $('#second-round-guess > div').length == 4 && $('#third-round-guess > div').length == 4 && $('#fourth-round-guess > div').length < 4 ){
           $('#fourth-round-guess').append($selectedGuess);
 
         } else if($('#first-round-guess > div').length == 4 && $('#second-round-guess > div').length == 4 && $('#third-round-guess > div').length < 4){
@@ -336,6 +339,12 @@ $(function(){
 
     if($('#first-round-feedback > div').length == 4 && $('#second-round-feedback > div').length == 4 &&
     $('#third-round-feedback > div').length == 4 &&
+    $('#fourth-round-feedback > div').length == 4 && $('#fifth-round-feedback > div').length < 4){
+      $('#fifth-round-feedback').append($feedback);
+      // $('#fourth-round-feedback').append($noFeedback);
+
+    } else if($('#first-round-feedback > div').length == 4 && $('#second-round-feedback > div').length == 4 &&
+    $('#third-round-feedback > div').length == 4 &&
     $('#fourth-round-feedback > div').length < 4 ){
       $('#fourth-round-feedback').append($feedback);
       // $('#fourth-round-feedback').append($noFeedback);
@@ -358,7 +367,18 @@ $(function(){
     var fillInFeedbackDiv = function(){
       console.log("no feedback clicked");
 
-      if($('#first-round-guess > div').length == 4 && $('#second-round-guess > div').length == 4 && $('#third-round-guess > div').length == 4 && $('#fourth-round-guess > div').length == 4 ){
+      if($('#first-round-guess > div').length == 4 && $('#second-round-guess > div').length == 4 && $('#third-round-guess > div').length == 4 && $('#fourth-round-guess > div').length == 4 && $('#fifth-round-guess > div').length == 4 ){
+        for (var i = 1; i < 5; i++){
+          console.log("in  i loop");
+          if($('#fifth-round-feedback > div').length == i){
+            for (var j = 1; j <= 4-i; j++) {
+              var $noFeedback =
+              $('<div>').addClass('feedback-square').attr('id','none');
+              $('#fifth-round-feedback').append($noFeedback);
+            };
+          };
+        };
+      } else if($('#first-round-guess > div').length == 4 && $('#second-round-guess > div').length == 4 && $('#third-round-guess > div').length == 4 && $('#fourth-round-guess > div').length == 4 ){
         for (var i = 1; i < 5; i++){
           console.log("in  i loop");
           if($('#fourth-round-feedback > div').length == i){
@@ -406,12 +426,13 @@ $(function(){
         };
       };
 
-      if (feedback.length == 4 && $('#fourth-round-feedback > div').length < 4){
+      if (feedback.length == 4 && $('#fifth-round-feedback > div').length < 4){
+        console.log("inside if statement for codeBreakerGuess init");
         $('.instruction').text("Code Breaker: make your guess.");
         codeBreakerGuess();
       };
 
-      if($('#fourth-round-feedback > div').length == 4){
+      if($('#fifth-round-feedback > div').length == 4){
         codeMakerScore += 1;
         if(roundCount == roundLimit){
           declareWinner();
