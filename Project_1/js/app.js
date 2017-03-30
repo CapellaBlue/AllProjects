@@ -381,13 +381,20 @@ $(function(){
 
   var declareWinner = function(){
     console.log("inside declareWinner");
+    if(playerOne.role == 'Code Maker'){
+      playerOne.points = playerOne.points + codeMakerScore;
+      playerTwo.points = playerTwo.points + codeBreakerScore;
+    } else if(playerOne.role == 'Code Breaker'){
+      playerOne.points = playerOne.points + codeBreakerScore;
+      playerTwo.points = playerTwo.points + codeMakerScore;
+    };
     $('instruction').text("");
     $scoreDiv.text("");
     $scoreDiv.append($masterMind);
     if(playerOne.points > playerTwo.points){
-      $('.instruction').text(playerOne.name + "wins with" + playerOne.points + "points!");
+      $('.instruction').text(playerOne.name + " wins with " + playerOne.points + "points!");
     } else if(playerTwo.points > playerOne.points){
-      $('.instruction').text(playerOne.name + "wins with" + playerOne.points + "points!");
+      $('.instruction').text(playerTwo.name + " wins with " + playerTwo.points + "points!");
     };
   };
 
