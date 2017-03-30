@@ -10,7 +10,7 @@
 </head>
 <body>
   <div class="first-div">
-    <p>
+    <p class="game-text">
       Mastermind is a simple two-player code-breaking board game invented in 1970 by Mordecai Meirowitz, an Israeli postmaster and telecommunications expert. It may have been inspired by moo, a program developed by J. M. Grochow at MIT in the late 1960s.
 
       In the game, one player is the codemaker and the other is the codebreaker. The codemaker secretly selects a code consisting of an ordered sequence of four colors  (c_1,c_2,c_3,c_4), each chosen from a set of six possible colors, with repetitions allowed. The codebreaker then tries to guess the code by repeatedly proposing a sequence of colors (g_1,g_2,g_3,g_4). After each guess, the codemaker tells the codebreaker two numbers (b,w): the number of correct colors in the correct positions (b) and the number of colors that are part of the code but not in the correct positions (w). For example, if the code is (1,2,3,3) and the codebreaker's guess is (3,2,4,3), then the codemaker's response would be (2,1), since the codebreaker has guessed the 2 and the second 3 correctly and in the correct positions, while having guessed the first three correctly but in the wrong position.
@@ -75,7 +75,7 @@
     </div>
 
   <div class="last-div">
-    <p>Irving (1978-79) subsequently found a strategy with slightly smaller average length. Koyama and Lai (1993) described a strategy that minimizes the average number of guesses, requiring on average 4.340 guesses, although may require up to six in the worst case. A slight modification also described by Koyama and Lai (1993) increases the average to 4.341, but reduces the maximum number of guesses required to five.
+    <p class="game-text">Irving (1978-79) subsequently found a strategy with slightly smaller average length. Koyama and Lai (1993) described a strategy that minimizes the average number of guesses, requiring on average 4.340 guesses, although may require up to six in the worst case. A slight modification also described by Koyama and Lai (1993) increases the average to 4.341, but reduces the maximum number of guesses required to five.
 
     The "static" problem of finding the minimum number of guesses the codebreaker can make all at once at the beginning of the game without waiting for the answers, and then upon receiving the answers, completely determine the code in the next "guess" (Chvatal 1983), can be solved with six initial guesses (Greenwell 1999-2000). One particular combination that allows the codebreaker to know the code after six guesses (and so require a seventh to reveal his knowledge of the solution) is (1, 2, 2, 1), (2, 3, 5, 4), (3, 3, 1, 1), (4, 5, 2, 4), (5, 6, 5, 6), (6, 6, 4, 3). It is not known if this number can be reduced to five (exhaustive checking would require 6^(5×4)=6^(20) approx 3.7×10^(15) computations), although it is believed not.
 

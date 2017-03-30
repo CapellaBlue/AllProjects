@@ -1,3 +1,4 @@
+
 body {
   /*font-family: Times New Roman;*/
   width: 100%;
@@ -28,11 +29,12 @@ body {
   align-items: center;
   flex-direction: column;
   width: 50%;
-  margin:  20px 10px;
+  margin:  20px 5px;
+  min-width: 650px;
 }
 
-p {
-  font-size: 15px;
+.game-text {
+  font-size: 16.5px;
   color: lightgray;
   text-align: justify;
 }
@@ -46,10 +48,9 @@ p {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  /*margin: 10px auto 0 auto;*/
   color: black;
   font-weight: bold;
-  font-size: 20px;
+  /*font-size: 20px;*/
   box-shadow: 3px 3px 10px black;
 }
 
@@ -233,6 +234,7 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   padding: 14px;
   border-left: 3px solid black;
   /*border-right: 3px solid black;*/
@@ -241,6 +243,7 @@ p {
 .buttons {
   border: 3px solid white;
   height: 60px;
+  width: 75%;
   box-shadow: 3px 3px 10px black;
 }
 
@@ -280,17 +283,18 @@ p {
 .guessed-square {
   border: 3px solid lightgray;
   height: 60px;
-  width: 60px;
+  width: 20%;
   margin: 5px 17px 5px 17px;
 }
 
 .feedback-square {
   border: 1px solid white;
   height: 25px;
-  width: 25px;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 5px;
+  width: 25%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 #black {
@@ -328,3 +332,13 @@ p {
   margin: 20px;
   border-radius: 3px;
 }
+
+/*@media only screen and (min-width: 650px){
+  .middle-div{
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    margin:  20px 5px;
+  }
+}*/

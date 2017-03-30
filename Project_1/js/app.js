@@ -130,6 +130,9 @@ $(function(){
 
     $beginTwoPlayerBtn.on('click', codeMakerFirstTurn);
     $beginTwoPlayerBtn.on('click', submitNames);
+    $beginTwoPlayerBtn.on('click', function(){
+      $('.game-text').fadeOut();
+    });
   };
 
   //==============================================================================
