@@ -1,23 +1,56 @@
 body {
   /*font-family: Times New Roman;*/
-  width: 960px;
+  width: 100%;
   margin: 0 auto;
   background: gray;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.first-div,.middle-div,.last-div{
+  display: flex;
+}
+
+.first-div{
+  width: 25%;
+  margin: 5px 5px 10px 10px;
+}
+
+.last-div {
+  width: 25%;
+  margin: 5px 10px 10px 5px
+}
+
+.middle-div{
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  margin:  20px 10px;
+}
+
+p {
+  font-size: 15px;
+  color: lightgray;
+  text-align: justify;
 }
 
 #score-container{
   position: relative;
-  width: 600px;
+  width: 100%;
   height: 40px;
   text-align: center;
   background: lightgray;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 20px auto 0 auto;
+  /*margin: 10px auto 0 auto;*/
   color: black;
   font-weight: bold;
   font-size: 20px;
+  box-shadow: 3px 3px 10px black;
 }
 
 #start-button {
@@ -83,7 +116,7 @@ body {
 
 .instruction {
   position: relative;
-  width: 600px;
+  width: 100%;
   height: 85px;
   text-align: center;
   background: black;
@@ -100,18 +133,19 @@ body {
 .game-board {
   position: relative;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   display: flex;
   height: 502px;
-  width: 400px;
-  margin: 0 380px 0 180px;
+  width: 100%;
+  /*margin: 0 380px 0 180px;*/
   flex-wrap: wrap;
 
 }
 
 #code-guess-container {
   height: 402px;
-  width: 400px;
+  width: 60%;
   background: white;
   display: flex;
   flex-direction: column;
@@ -121,7 +155,7 @@ body {
 }
 
 .guess-rows {
-  width: 400px;
+  width: 100%;
   height: 100px;
   border-top: .5px solid gray;
   background: white;
@@ -133,7 +167,7 @@ body {
 
 #code-storage{
   height: 100px;
-  width: 400px;
+  width: 60%;
   background: lightgray;
   display: flex;
   flex-direction: row;
@@ -146,7 +180,7 @@ body {
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  width: 100px;
+  width: 20%;
   height: 402px;
   background: lightgray;
   color: white;
@@ -154,7 +188,7 @@ body {
 }
 
 .feedback-rows {
-  width: 100px;
+  width: 100%;
   height: 100px;
   border-top: .5px solid gray;
   background: lightgray;
@@ -166,7 +200,7 @@ body {
 }
 
 #feedback-button-container {
-  width: 100px;
+  width: 20%;
   height: 100px;
   background: white;
   display: flex;
@@ -194,12 +228,12 @@ body {
 }
 
 .button-container {
-  width: 63px;
+  width: 14%;
   height: 502px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 15px;
+  padding: 14px;
   border-left: 3px solid black;
   /*border-right: 3px solid black;*/
 }
@@ -269,7 +303,7 @@ body {
 
 .controls {
   position: relative;
-  width: 600px;
+  width: 100%;
   text-align: center;
   background: black;
   display: flex;

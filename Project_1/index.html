@@ -2,56 +2,87 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <title>MASTERMIND</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="js/app.js"></script>
 </head>
 <body>
-  <div id="score-container">
+  <div class="first-div">
+    <p>
+      Mastermind is a simple two-player code-breaking board game invented in 1970 by Mordecai Meirowitz, an Israeli postmaster and telecommunications expert. It may have been inspired by moo, a program developed by J. M. Grochow at MIT in the late 1960s.
+
+      In the game, one player is the codemaker and the other is the codebreaker. The codemaker secretly selects a code consisting of an ordered sequence of four colors  (c_1,c_2,c_3,c_4), each chosen from a set of six possible colors, with repetitions allowed. The codebreaker then tries to guess the code by repeatedly proposing a sequence of colors (g_1,g_2,g_3,g_4). After each guess, the codemaker tells the codebreaker two numbers (b,w): the number of correct colors in the correct positions (b) and the number of colors that are part of the code but not in the correct positions (w). For example, if the code is (1,2,3,3) and the codebreaker's guess is (3,2,4,3), then the codemaker's response would be (2,1), since the codebreaker has guessed the 2 and the second 3 correctly and in the correct positions, while having guessed the first three correctly but in the wrong position.
+
+      The codebreaker continues guessing until he guesses the code correctly or until he reaches a maximum allowable number of guesses without having correctly identified the secret code.
+
+      Interestingly, w can be computed as
+
+      w=(sum_(i=1)^6min(c_i,g_i))-b,
+      where c_i is the number of times the color i is in the code and g_i is the number of times it is in the guess.
+
+      Knuth (1976-77) showed that the codebreaker can always succeed in five or fewer moves (i.e., knows the code after four guesses). His technique uses a greedy strategy that minimizes the number of remaining possibilities at each step, and requires 4.478 guesses on average, assuming equally likely code choice. <p>
+
+
+    </div>
+
+    <div class="middle-div">
+      <div id="score-container">
+      </div>
+      <div class="instruction">
+        <button type="button" id="start-button">Start</button>
+      </div>
+      <div class="game-board">
+
+        <div class="button-container">
+          <button type="button" class="buttons"  id="red"></button>
+          <button type="button" class="buttons" id="yellow"></button>
+          <button type="button" id="blue" class="buttons"></button>
+          <button type="button" id="orange" class="buttons"></button>
+          <button type="button" id="green" class="buttons"></button>
+          <button type="button" id="purple" class="buttons"></button>
+        </div>
+
+        <div id="code-guess-container">
+          <div class="guess-rows" id="fourth-round-guess"></div>
+          <div class="guess-rows" id="third-round-guess"></div>
+          <div class="guess-rows" id="second-round-guess"></div>
+          <div class="guess-rows" id="first-round-guess"></div>
+        </div>
+
+        <div id="code-storage">
+        </div>
+
+        <div id="feedback-board">
+          <div class="feedback-rows" id="fourth-round-feedback"></div>
+          <div class="feedback-rows" id="third-round-feedback"></div>
+          <div class="feedback-rows" id="second-round-feedback"></div>
+          <div class="feedback-rows" id="first-round-feedback"></div>
+        </div>
+
+        <div id="feedback-button-container">
+          <button type="button" class="feedback-buttons" id="black"></button>
+          <button type="button" class="feedback-buttons" id="gray"></button>
+          <button type="button" id="feedback-empty-button">No Feedback</button>
+        </div>
+
+      </div>
+
+      <div class="controls">
+        <button type="button" id="displayCode">Display Code</button>
+      </div>
+    </div>
+
+  <div class="last-div">
+    <p>Irving (1978-79) subsequently found a strategy with slightly smaller average length. Koyama and Lai (1993) described a strategy that minimizes the average number of guesses, requiring on average 4.340 guesses, although may require up to six in the worst case. A slight modification also described by Koyama and Lai (1993) increases the average to 4.341, but reduces the maximum number of guesses required to five.
+
+    The "static" problem of finding the minimum number of guesses the codebreaker can make all at once at the beginning of the game without waiting for the answers, and then upon receiving the answers, completely determine the code in the next "guess" (Chvatal 1983), can be solved with six initial guesses (Greenwell 1999-2000). One particular combination that allows the codebreaker to know the code after six guesses (and so require a seventh to reveal his knowledge of the solution) is (1, 2, 2, 1), (2, 3, 5, 4), (3, 3, 1, 1), (4, 5, 2, 4), (5, 6, 5, 6), (6, 6, 4, 3). It is not known if this number can be reduced to five (exhaustive checking would require 6^(5×4)=6^(20) approx 3.7×10^(15) computations), although it is believed not.
+
+    Swaszek (1999-2000) gives an analysis of practical strategies that do not require complicated record-keeping or use of a computer. Making a random guess from the set of remaining candidate code sequences gives a surprisingly short average game length of 4.638, while interpreting each guess as a number and using the next higher number consistent with the known information gives a game of average length 4.758.
+
+    <a href="-http://mathworld.wolfram.com/Mastermind.html">From Mathworld</a></p>
   </div>
-  <div class="instruction">
-    <button type="button" id="start-button">Start</button>
-  </div>
 
-
-  <div class="game-board">
-
-    <div class="button-container">
-      <button type="button" class="buttons"  id="red"></button>
-      <button type="button" class="buttons" id="yellow"></button>
-      <button type="button" id="blue" class="buttons"></button>
-      <button type="button" id="orange" class="buttons"></button>
-      <button type="button" id="green" class="buttons"></button>
-      <button type="button" id="purple" class="buttons"></button>
-    </div>
-
-    <div id="code-guess-container">
-      <div class="guess-rows" id="fourth-round-guess"></div>
-      <div class="guess-rows" id="third-round-guess"></div>
-      <div class="guess-rows" id="second-round-guess"></div>
-      <div class="guess-rows" id="first-round-guess"></div>
-    </div>
-
-    <div id="code-storage">
-    </div>
-
-    <div id="feedback-board">
-      <div class="feedback-rows" id="fourth-round-feedback"></div>
-      <div class="feedback-rows" id="third-round-feedback"></div>
-      <div class="feedback-rows" id="second-round-feedback"></div>
-      <div class="feedback-rows" id="first-round-feedback"></div>
-    </div>
-
-    <div id="feedback-button-container">
-      <button type="button" class="feedback-buttons" id="black"></button>
-      <button type="button" class="feedback-buttons" id="gray"></button>
-      <button type="button" id="feedback-empty-button">No Feedback</button>
-    </div>
-
-  </div>
-  <div class="controls">
-    <button type="button" id="displayCode">Display Code</button>
-  </div>
 </body>
 </html>
