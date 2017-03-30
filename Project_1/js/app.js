@@ -392,9 +392,9 @@ $(function(){
     $scoreDiv.text("");
     $scoreDiv.append($masterMind);
     if(playerOne.points > playerTwo.points){
-      $('.instruction').text(playerOne.name + " wins with " + playerOne.points + "points!");
+      $('.instruction').text(playerOne.name + " wins with " + playerOne.points + " points!");
     } else if(playerTwo.points > playerOne.points){
-      $('.instruction').text(playerTwo.name + " wins with " + playerTwo.points + "points!");
+      $('.instruction').text(playerTwo.name + " wins with " + playerTwo.points + " points!");
     };
   };
 
