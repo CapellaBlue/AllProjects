@@ -12,6 +12,11 @@ body {
 
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
 .first-div,.middle-div,.last-div{
   display: flex;
 }
