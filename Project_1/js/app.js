@@ -19,6 +19,7 @@ $(function(){
 
   var roundCount = 1;
 
+  //player objects that hold name, role(codemaker or breaker) and points accrued during the entire game.
   var playerOne = { name: "",
   role: 'Code Maker',
   points: 0         };
@@ -26,11 +27,16 @@ $(function(){
   var playerTwo = { name: "",
   role: 'Code Breaker',
   points: 0         };
-  // console.log($inputOne.val());
+
+  // var computer = { name: 'Computer',
+  // role: 'Code Breaker',
+  // points: 0         };
+
+  //input boxes to get the user/s name/s
   var $inputOne = $('<input>').attr('type', 'text').attr('id', 'input-one').addClass('nameInput').attr('placeholder', "Enter Code Maker's Name");
 
   var $inputTwo = $('<input>').attr('type', 'text').attr('id', 'input-two').addClass('nameInput').attr('placeholder', "Enter Code Breaker's Name");
-  // console.log($inputOne);
+
 
   //player scores;
   var codeMakerScore = 0;
@@ -64,14 +70,16 @@ $(function(){
   var $displayCodeBtn = $('#displayCode');
 
   //player mode buttons
-  var $versusComputerBtn = $('<button>').attr('id','versus-computer-btn').addClass('player-mode').text("Versus Computer");
+  // var $versusComputerBtn = $('<button>').attr('id','versus-computer-btn').addClass('player-mode').text("Versus Computer");
   var $twoPlayerBtn = $('<button>').attr('id','two-player-btn').addClass('player-mode').text("Two Player");
 
-  //reset button
+  //reset buttons
   var $startNextRoundBtn = $('<button>').attr('id', 'next-round-start').text('Start Next Round');
+  var $resetBtn = $('<button>').attr('id', 'play-again').text('Play Again');
 
   //button pressed when two player's names are entered.
   var $beginTwoPlayerBtn = $('<button>').attr('id','begin-two-player');
+  // var $beginVersusComputerBtn = $('<button>').attr('id','begin-versus-computer');
 
   //the user choses between 2 or 4 rounds.
   var $twoRoundsBtn = $('<button>').attr('id','two-rounds-button').text("Two Rounds");
@@ -92,13 +100,11 @@ $(function(){
   };
 
   //this function shows the two player mode options.
-  var showPlayerMode = function(){
-    $twoRoundsBtn.css('display', 'none');
-    $fourRoundsBtn.css('display', 'none');
-    $('.instruction').append($twoPlayerBtn).append($versusComputerBtn);
-    $twoPlayerBtn.on('click', twoPlayerMode);
-    // $versusComputerBtn.on('click', versusComputerMode);
-  };
+
+  //   $('.instruction').append($twoPlayerBtn);
+  //   $twoPlayerBtn.on('click', twoPlayerMode);
+  //   // $versusComputerBtn.on('click', versusComputerMode);
+  // };
 
 
 
@@ -106,18 +112,12 @@ $(function(){
   //==============================================================================
   //----------------------------Two Player Mode Set UP----------------------------
   //==============================================================================
-  var submitNames = function(){
-    $masterMind.remove();
-    playerOne.name = $inputOne.val();
-    playerTwo.name = $inputTwo.val();
 
-    $playerOneScoreBoard = $('<p>').text(playerOne.role + ": " + playerOne.name + ": " + playerOne.points);
-    $playerTwoScoreBoard = $('<p>').text(playerTwo.role + ": " + playerTwo.name + ": "+ playerTwo.points);
-    $scoreDiv.append($playerOneScoreBoard);
-    $scoreDiv.append($playerTwoScoreBoard);
-  };
-
+//removes rounds button options. appends name inputs. start game button(!!!) Show's feedback buttons and fades background text.
   var twoPlayerMode = function(){
+
+    $twoRoundsBtn.css('display', 'none');
+    $fourRoundsBtn.css('display', 'none');
 
     $('.instruction').append($inputOne);
     $('.instruction').append($beginTwoPlayerBtn);
@@ -132,34 +132,45 @@ $(function(){
     $beginTwoPlayerBtn.on('click', submitNames);
     $beginTwoPlayerBtn.on('click', function(){
       $('.game-text').fadeOut();
+
     });
+  };
+
+//takes the input's values (names) and sets them to a variable. Then, appends these names with scores to the top of the page for the entirety of the game.
+  var submitNames = function(){
+    playerOne.name = $inputOne.val();
+    playerTwo.name = $inputTwo.val();
+
+    $playerOneScoreBoard = $('<p>').text(playerOne.role + ": " + playerOne.name + ": " + playerOne.points);
+    $playerTwoScoreBoard = $('<p>').text(playerTwo.role + ": " + playerTwo.name + ": "+ playerTwo.points);
+    $scoreDiv.append($playerOneScoreBoard);
+    $scoreDiv.append($playerTwoScoreBoard);
   };
 
   //==============================================================================
   //-------------------------------Reset & Rounds-------------------------------
   //==============================================================================
-
+//if two rounds is seleted, this sets the round limit
   var twoRounds = function(){
     roundLimit = 4;
-    showPlayerMode();
+    twoPlayerMode();
   };
 
   var fourRounds = function(){
     roundLimit = 8;
-    showPlayerMode();
+    twoPlayerMode();
   };
 
+//this compares the current round count to the round limit to see if we've reached the limit--and if we have, to declare a winner.
   var checkRound = function(){
-    console.log("checkRound here");
     if(roundCount == roundLimit){
       declareWinner();
     } else {
       startNextRound();
     };
   };
-
+//sets updates scores, updates score board.
   var startNextRound = function(){
-    console.log("inside startNextRound");
     $('.controls').append($startNextRoundBtn);
     if(playerOne.role == 'Code Maker'){
       playerOne.points = playerOne.points + codeMakerScore;
@@ -174,8 +185,8 @@ $(function(){
     $startNextRoundBtn.on('click', reset);
   };
 
+//a function to switch the player's roles and do a clean wip of the previous round's adventures
   var reset = function(){
-    console.log(playerOne.role);
     if(playerOne.role == "Code Maker"){
       playerOne.role = "Code Breaker";
       playerTwo.role = "Code Maker";
@@ -186,7 +197,6 @@ $(function(){
     $playerOneScoreBoard.text(playerOne.role + ": " + playerOne.name + ": " + playerOne.points);
     $playerTwoScoreBoard.text(playerTwo.role + ": " + playerTwo.name + ": "+ playerTwo.points);
     roundCount += 1;
-    console.log("roundCount is " + roundCount);
     code = [];
     guess = [];
     feedback = [];
@@ -200,20 +210,18 @@ $(function(){
     codeMakerFirstTurn();
   };
 
-
-
-
   console.log("You're doing fine");
   //==============================================================================
   //----------------------------CODEMAKER SELECTS CODE ---------------------------
   //==============================================================================
 
+//This button gives the code maker the opportunity to display the code if they wish
   var displayCode = function(){
     $displayCodeBtn.on('click', hideCode);
     $displayCodeBtn.text("Hide Code");
     $('.sequence-square').css('visibility', 'visible');
   };
-
+//once displayed, the user can then quickly hide the code again
   var hideCode = function(){
     $('.sequence-square').css('visibility', 'hidden');
     $displayCodeBtn.text("Display Code");
@@ -221,10 +229,11 @@ $(function(){
   };
 
   $displayCodeBtn.on('click', displayCode);
-  //when button is clicked....store in code-storage array and append
+
   var codeMakerFirstTurn = function(){
     $('.nameInput').css('display', 'none');
     $beginTwoPlayerBtn.css('display','none');
+    //until the codemaker has 4 colors clicked, the program will keep storing the code and appending them to the code storage board...hidden.
     if(code.length < 4){
       var storeCode = function(){
         code.push($(this).attr('id'));
@@ -232,6 +241,7 @@ $(function(){
         $selectedCode.addClass('sequence-square');
 
         $('#code-storage').append($selectedCode);
+        //once the code maker selects four colors, the buttons disable and it becomes the codebreaker's turn.
         if (code.length == 4){
           $('.instruction').text("Code Breaker: make your guess.");
 
@@ -329,8 +339,6 @@ $(function(){
     };
   };
 
-
-
   //a handler function to append the feedback divs to the respective feedback row
   var giveFeedback = function (){
 
@@ -363,11 +371,13 @@ $(function(){
       // $('#first-round-feedback').append($noFeedback);
     };
   };
+
+  //
   var fillInFeedbackDiv = function(){
     console.log("no feedback clicked");
 
     if($('#first-round-guess > div').length == 4 && $('#second-round-guess > div').length == 4 && $('#third-round-guess > div').length == 4 && $('#fourth-round-guess > div').length == 4 && $('#fifth-round-guess > div').length == 4 ){
-      for (var i = 1; i < 5; i++){
+      for (var i = 0; i < 4; i++){
         console.log("in  i loop");
         if($('#fifth-round-feedback > div').length == i){
           for (var j = 1; j <= 4-i; j++) {
@@ -380,7 +390,7 @@ $(function(){
       };
       endFeedback();
     } else if($('#first-round-guess > div').length == 4 && $('#second-round-guess > div').length == 4 && $('#third-round-guess > div').length == 4 && $('#fourth-round-guess > div').length == 4 ){
-      for (var i = 1; i < 5; i++){
+      for (var i = 0; i < 4; i++){
         console.log("in  i loop");
         if($('#fourth-round-feedback > div').length == i){
           for (var j = 1; j <= 4-i; j++) {
@@ -393,7 +403,7 @@ $(function(){
       };
       endFeedback();
     } else if($('#first-round-guess > div').length == 4 && $('#second-round-guess > div').length == 4 && $('#third-round-guess > div').length == 4) {
-      for (var i = 1; i < 5; i++){
+      for (var i = 0; i < 4; i++){
         console.log("in  i loop");
         if($('#third-round-feedback > div').length == i){
           for (var j = 1; j <= 4-i; j++) {
@@ -406,7 +416,7 @@ $(function(){
       };
       endFeedback();
     } else if($('#first-round-guess > div').length == 4 && $('#second-round-guess > div').length == 4){
-      for (var i = 1; i < 5; i++){
+      for (var i = 0; i < 4; i++){
         console.log("in i loop" + feedback);
         if($('#second-round-feedback > div').length == i){
           for (var j = 1; j <= 4-i; j++) {
@@ -439,8 +449,9 @@ $(function(){
   var endFeedback = function(){
     console.log("inside endFeedback");
     if (feedback.length == 4 && $('#fifth-round-feedback > div').length < 4){
-      console.log("inside if statement for codeBreakerGuess init");
+
       $('.instruction').text("Code Breaker: make your guess.");
+
       codeBreakerGuess();
     };
 
@@ -459,13 +470,12 @@ $(function(){
   $gray.on('click', giveFeedback);
   $feedbackEmptyBtn.on('click', fillInFeedbackDiv);
 
-
   //==============================================================================
   //---------------------------so, WHO WINS?????????????--------------------------
   //==============================================================================
 
   var declareWinner = function(){
-    console.log("inside declareWinner");
+
     if(playerOne.role == 'Code Maker'){
       playerOne.points = playerOne.points + codeMakerScore;
       playerTwo.points = playerTwo.points + codeBreakerScore;
@@ -473,6 +483,7 @@ $(function(){
       playerOne.points = playerOne.points + codeBreakerScore;
       playerTwo.points = playerTwo.points + codeMakerScore;
     };
+
     $('instruction').text("");
     $scoreDiv.text("");
     $scoreDiv.append($masterMind);
@@ -481,7 +492,49 @@ $(function(){
     } else if(playerTwo.points > playerOne.points){
       $('.instruction').text(playerTwo.name + " wins with " + playerTwo.points + " points!");
     };
+
+    $('.controls').append($resetBtn);
+
+
+    var reload = function(){
+      location.reload();
+    };
+
+    $resetBtn.on('click', reload);
   };
+
+  //==============================================================================
+  //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  //---------------------------VERSUS COMPUTER MODE CODE--------------------------
+  //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  //==============================================================================
+
+  // var versusComputerMode = function(){
+  //   $('.instruction').append($inputOne);
+  //   ('.instruction').append($beginVersusComputerBtn);
+  //   $beginVersusComputerBtn.text("Begin!");
+  //   $startBtn.css('display', 'none');
+  //   $('.player-mode').css('display', 'none');
+  //   $beginTVers.on('click', codeMakerFirstTurn);
+  //   $beginVersusComputerBtn.on('click', submitNames);
+  //   $beginVersusComputerBtn.on('click', function(){
+  //     $('.game-text').fadeOut();
+  //     $masterMind.fadeOut();
+  //   });
+  // };
+  //
+  // //submits playerOne's name:
+  // var getUserName= function(){
+  //   playerOne.name = $inputOne.val();
+  //   $playerOneScoreBoard = $('<p>').text(playerOne.role + ": " + playerOne.name + ": " + playerOne.points);
+  //   $playerTwoScoreBoard = $('<p>').text(computer.role + ": " + computer.name + ": "+ computer.points);
+  //   $scoreDiv.append($playerOneScoreBoard);
+  //   $scoreDiv.append($playerTwoScoreBoard);
+  // };
+  //
+  // };
+
+
 
 
 });
