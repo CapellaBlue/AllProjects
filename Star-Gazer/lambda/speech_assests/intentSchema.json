@@ -1,0 +1,67 @@
+{
+  "intents": [
+    {
+      "slots": [
+        {
+          "name": "Zipcode",
+          "type": "AMAZON.NUMBER"
+        }
+      ],
+      "intent": "GetWeatherTodayIntent"
+    },
+    {
+      "slots": [
+        {
+          "name": "Time",
+          "type": "AMAZON.TIME"
+        },
+        {
+          "name": "Zipcode",
+          "type": "AMAZON.NUMBER"
+        }
+      ],
+      "intent": "GetWeatherTimeIntent"
+    },
+    {
+      "slots": [
+        {
+          "name": "Date",
+          "type": "AMAZON.DATE"
+        },
+        {
+          "name": "Time",
+          "type": "AMAZON.TIME"
+        },
+        {
+          "name": "Zipcode",
+          "type": "AMAZON.NUMBER"
+        }
+      ],
+      "intent": "GetWeatherForecastIntent"
+    },
+    {
+      "slots": [
+        {
+          "name": "Zipcode",
+          "type": "AMAZON.NUMBER"
+        }
+      ],
+      "intent": "GetZipcodeIntent"
+    },
+    {
+      "intent": "AMAZON.YesIntent"
+    },
+    {
+      "intent": "AMAZON.NoIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}
