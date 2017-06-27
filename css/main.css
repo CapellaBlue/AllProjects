@@ -35,7 +35,15 @@ a:hover{
 }
 #four{
     padding: 1px;
-    background: #DFEBEC;
+    background: white;
+}
+#five{
+  padding: 1px;
+  background: #F6F6F6;
+}
+#six{
+  padding: 1px;
+  background: #DFEBEC;
 }
 
 .title {
@@ -79,15 +87,20 @@ a:hover{
     width:90%;
     margin: 35px auto 35px auto;
     margin-bottom: 35px;
-    overflow: scroll;
+    overflow: hidden;
 }
 
-.yarn,.typepolitik, .mastermind, .booksandbeers{
+.yarn,.typepolitik, .mastermind, .booksandbeers, .star-gazer, .justncase{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 15px;
     width: 50%;
+}
+.projects p {
+  overflow-x: scroll;
+  margin-left: 32px;
+  margin-right: 20px;
 }
 
 
@@ -106,9 +119,9 @@ a:hover{
     max-height: 300px;
     width: auto;
 }
-#typepolitik{
+/*#typepolitik{
     width: 50%;
-}
+}*/
 
 .txt_view {
 	 position:relative;
@@ -197,6 +210,18 @@ a {
 	 animation-fill-mode:both;
 	 -webkit-animation-fill-mode:both;
 }
+.name-header .disc_box a:nth-child(5) {
+	 animation:discTxtSlide .4s 1.3s;
+	 -webkit-animation:discTxtSlide .4s 1.3s;
+	 animation-fill-mode:both;
+	 -webkit-animation-fill-mode:both;
+}
+.name-header .disc_box a:nth-child(6) {
+	 animation:discTxtSlide .4s 1.3s;
+	 -webkit-animation:discTxtSlide .4s 1.3s;
+	 animation-fill-mode:both;
+	 -webkit-animation-fill-mode:both;
+}
 
 #footer{
     background: #DFEBEC;
@@ -247,6 +272,7 @@ a {
         flex-direction: column;
         height:auto;
     }
+
     .project-div{
       position: relative;
         min-width: 274px;
@@ -260,16 +286,17 @@ a {
         height: auto;
         object-fit: contain;
     }
-    .yarn,.typepolitik, .mastermind, .booksandbeers{
+    .yarn,.typepolitik, .mastermind, .booksandbeers, .star-gazer, .justncase{
         display: flex;
         flex-direction: column;
         align-items: center;
         margin: 15px;
         width: 100%;
     }
-    #typepolitik {
+
+    /*#typepolitik {
       width: 273px;
-    }
+    }*/
     .projects > div {
         margin: 5px;
     }
