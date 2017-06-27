@@ -1,7 +1,7 @@
 # CapellaBlue.github.io
 ---
 ## Star Gazer
-<a href="http://capellablue.github.io/AllProjects/Star-GazerS">Star Gazer</a>
+<a href="http://capellablue.github.io/AllProjects/Star-Gazer">Star Gazer</a>
 
 An Alexa Skill, certified by Amazon and live. Star-Gazer is a Lambda function that makes a request to a third party API for weather data. The data is then filtered through and channeled to initiate a response to the user based off a specific request for star gazing conditions in the user's zipcode by date and/or time.
 
